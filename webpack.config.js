@@ -1,35 +1,39 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-	devtool: 'eval-source-map',
-	module: {
-		rules: [
-			{
-				test: /\.html$/,
-				use: [
-					{
-						loader: 'html-loader',
-						options: {minimize: true}
-					}
-				]
-			},
-			{
-				test: /\.css$/,
-				use: ['style-loader','css-loader']
-			},
-			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader'
-				}
-			}
-		]
-	},
-	plugins: [
-		new HtmlWebPackPlugin({
-			template: "./public/index.html",
-			filename: "./index.html"
-		})
-	]
+  devtool: "eval-source-map",
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: {minimize: true},
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+  ],
+  output: {
+    path: path.resolve(__dirname, "build"),
+  },
 };
